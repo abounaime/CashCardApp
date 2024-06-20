@@ -39,9 +39,9 @@ pipeline {
 
              steps {
 
-                  sh "./gradlew jacocoTestReport"
+                  sh "gradle jacocoTestReport"
 
-                  sh "./gradlew jacocoTestCoverageVerification"
+                  sh "gradle jacocoTestCoverageVerification"
 
              }
 
