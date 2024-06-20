@@ -46,5 +46,14 @@ pipeline {
              }
 
         }
+        stage("Static code analysis") {
+
+             steps {
+
+                  sh "gradle checkstyleMain"
+
+             }
+
+        }
     }
 }
