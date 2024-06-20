@@ -40,7 +40,15 @@ pipeline {
              steps {
 
                   sh "gradle jacocoTestReport"
+                  publishHTML (target: [
 
+                                 reportDir: 'build/reports/jacoco/test/html',
+
+                                 reportFiles: 'index.html',
+
+                                 reportName: "JaCoCo Report"
+
+                            ])
                   sh "gradle jacocoTestCoverageVerification"
 
              }
