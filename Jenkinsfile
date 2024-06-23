@@ -1,14 +1,11 @@
 pipeline {
     agent any
     triggers {
-
-         pollSCM('* * * * *')
-
+        pollSCM('* * * * *') // Check if this frequency is suitable for your needs
     }
     environment {
         PATH = "/opt/gradle/gradle-7.6/bin:${env.PATH}"
     }
-
     stages {
         stage('Verify Gradle Installation') {
             steps {
@@ -32,58 +29,35 @@ pipeline {
             }
         }
         stage("Unit test") {
-
             steps {
-                    sh "gradle test"
-
+                sh "gradle test"
             }
-
         }
         stage("Code coverage") {
-
-             steps {
-
-                  sh "gradle jacocoTestReport"
-
-                  sh "gradle jacocoTestCoverageVerification"
-
-             }
-
+            steps {
+                sh "gradle jacocoTestReport"
+                sh "gradle jacocoTestCoverageVerification"
+            }
         }
         stage("Static code analysis") {
-
-             steps {
-
-                  sh "gradle checkstyleMain"
-
-             }
-
+            steps {
+                sh "gradle checkstyleMain"
+            }
         }
         stage("Package") {
-
-             steps {
-
-                  sh "gradlew build"
-
-             }
-
+            steps {
+                sh "gradle build"
+            }
         }
-
         stage("Docker build") {
-
-             steps {
-
-                  sh "docker build -t bounaimeabdeljalil/cashcard ."
-
-             }
+            steps {
+                sh "docker build -t bounaimeabdeljalil/cashcard ."
+            }
         }
         stage("Docker push") {
-
-             steps {
-
-                  sh "docker push bounaimeabdeljalil/cashcard"
-
-             }
-
+            steps {
+                sh "docker push bounaimeabdeljalil/cashcard"
+            }
         }
-}
+    } // Closing brace for stages
+} // Closing brace for pipeline
