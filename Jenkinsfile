@@ -59,5 +59,15 @@ pipeline {
                 sh "docker push bounaimeabdeljalil/cashcard"
             }
         }
+        stage("Deploy to staging") {
+
+             steps {
+
+                  sh "docker run -d --rm -p 8765:8080
+                  --name cashcard bounaimeabdeljalil/cashcard"
+
+             }
+
+        }
     } // Closing brace for stages
 } // Closing brace for pipeline
