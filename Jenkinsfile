@@ -1,6 +1,10 @@
 pipeline {
     agent any
+    triggers {
 
+         pollSCM('* * * * *')
+
+    }
     environment {
         PATH = "/opt/gradle/gradle-7.6/bin:${env.PATH}"
     }
