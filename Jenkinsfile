@@ -76,5 +76,14 @@ pipeline {
                   sh "docker build -t bounaimeabdeljalil/cashcard ."
 
              }
-    }
+        }
+        stage("Docker push") {
+
+             steps {
+
+                  sh "docker push bounaimeabdeljalil/cashcard"
+
+             }
+
+        }
 }
