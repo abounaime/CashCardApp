@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        pollSCM('* * * * *') // Check if this frequency is suitable for your needs
+        pollSCM('* * * *') // Check if this frequency is suitable for your needs
     }
     environment {
         PATH = "/opt/gradle/gradle-7.6/bin:${env.PATH}"
