@@ -24,6 +24,7 @@ public class CashCardController {
     }
     @GetMapping("/{requestedId}")
     public ResponseEntity<CashCard> findById(@PathVariable Long requestedId, Principal principal){
+        System.out.println("test");
         return cashCardRepository.findByIdAndOwner(requestedId, principal.getName())
                 .map(cashCard -> ResponseEntity.ok(cashCard))
                 .orElse(ResponseEntity.notFound().build());
